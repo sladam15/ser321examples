@@ -1,31 +1,92 @@
-# ser321examples
-
-All examples in this repository are for you to play with and to learn about the different concepts in this class. This repo is still a "living" thing. As we progress we might add more examples or make changes. 
-
-## Advise
-It is advised that you fork this repository so that you have your own version and can also make changes to your own repo to test different scenarios. Then clone that repo to your main machine and your second machine. 
-
-If we make changes to the repository we will notify you in the Slack #example_repo channel. See here about forking and keeping your version up to date <https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo?>
-
-## Development
-All examples are developed by the teaching team:
-
-Many examples are used and adapted from Dr. Lindquist and Dr. Gary.
-
-Others were developed by Dr. Mehlhase, David Clements and Aman Kaushik.
+# Assignment 3 Starter Code
 
 
-## Running the examples
-The examples should all have Gradle files. The separate folders have a Gradle project but the "inner" folders also have separate Gradle files. Please check the comments and files so you know how to run the examples. 
+## GUI Usage
 
-## Suggestions
-If you find any issues or have suggestions on how to improve the repo, the Gradle files etc. feel free to let us know. We are happy to accept Pull Requests if you think you come up with something good. 
+### Code
 
-## Have fun
+1. Create an instance of the GUI
 
-Feel free to play with these examples, the better you understand these small examples the easier your coding assignments will be. 
+   ```
+   ClientGui main = new ClientGui();
+   ```
 
-Best
+2. Create a new game and give it a grid dimension
 
-Dr. Mehlhase
+   ```
+   // the pineapple example is 2, but choose whatever dimension of grid you want
+   // you can change the dimension to see how the grid changes size
+   main.newGame(2); 
+   ```
+
+*Depending on how you want to run the system, 3 and 4 can be run how you want*
+
+3. Insert image
+
+   ```
+   // the filename is the path to an image
+   // the first coordinate(0) is the row to insert in to
+   // the second coordinate(1) is the column to insert in to
+   // you can change coordinates to see the image move around the box
+   main.insertImage("img/Pineapple-Upside-down-cake_0_1.jpg", 0, 1);
+   ```
+
+4. Show GUI
+
+   ```
+   // true makes the dialog modal meaning that all interaction allowed is 
+   //   in the windows methods.
+   // false makes the dialog a pop-up which allows the background program 
+   //   that spawned it to continue and process in the background.
+   main.show(true);
+   ```
+
+### Terminal 
+
+```
+gradle Gui
+```
+*Note the current example will show you some sample errors, see main inside ClientGUI.java*
+
+
+## Files
+
+
+### ClientGui.java
+#### Summary
+
+> This is the main GUI to display the picture grid. 
+
+#### Methods
+  - show(boolean modal) :  Shows the GUI frame with the current state
+     * NOTE: modal means that it opens the GUI and suspends background processes. Processing still happens in the GUI If it is desired to continue processing in the background, set modal to false.
+   * newGame(int dimension) :  Start a new game with a grid of dimension x dimension size
+   * insertImage(String filename, int row, int col) :  Inserts an image into the grid
+   * appendOutput(String message) :  Appends text to the output panel
+   * submitClicked() :  Button handler for the submit button in the output panel
+
+### PicturePanel.java
+
+#### Summary
+
+> This is the image grid
+
+#### Methods
+
+- newGame(int dimension) :  Reset the board and set grid size to dimension x dimension
+- insertImage(String fname, int row, int col) :  Insert an image at (col, row)
+- insertImage(ByteArrayInputStream image, int row, int col) :  Insert an image at (col, row)
+
+### OutputPanel.java
+
+#### Summary
+
+> This is the input box, submit button, and output text area panel
+
+#### Methods
+
+- getInputText() :  Get the input text box text
+- setInputText(String newText) :  Set the input text box text
+- addEventHandlers(EventHandlers handlerObj) :  Add event listeners
+- appendOutput(String message) :  Add message to output text
 
